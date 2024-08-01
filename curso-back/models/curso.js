@@ -22,8 +22,8 @@ export const Curso = connection.define("curso", {
 });
 
 
-Curso.hasOne(Professor);
-Professor.belongsTo(Curso);
+// Curso.hasOne(Professor);
+// Professor.belongsTo(Curso);
 
-Curso.hasMany(Aluno);
-Aluno.belongsTo(Curso);
+// Curso.hasMany(Aluno);
+// Aluno.belongsTo(Curso);
