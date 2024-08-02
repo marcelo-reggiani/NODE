@@ -3,7 +3,6 @@ import { Router } from "express";
 
 export const  professorRouter = Router();
 
-
 professorRouter.post("/professors", async (req, res) => {
     const { nome, email, telefone } = req.body
 
@@ -14,7 +13,6 @@ professorRouter.post("/professors", async (req, res) => {
         res.status(500).json({ message: "Ocorreu um erro ao adicionar Professor." });
     }
 });
-
 
 professorRouter.put("/professors/:id", async (req, res) => {
     const { nome, email, telefone } = req.body;
@@ -31,7 +29,6 @@ professorRouter.put("/professors/:id", async (req, res) => {
         
     }
 });
-
 
 professorRouter.get("/professors", async (req, res) => {
     const listaProfessors = await Professor.findAll();

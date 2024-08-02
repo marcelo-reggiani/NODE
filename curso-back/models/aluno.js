@@ -1,7 +1,5 @@
 import {connection} from "../config/database.js";
 import { DataTypes } from "sequelize";
-import { Curso } from "./curso.js";
-import { Professor } from "./professor.js";
 
 export const Aluno = connection.define("aluno", {
 

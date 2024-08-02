@@ -3,7 +3,6 @@ import { Router } from "express";
 
 export const  cursosRouter = Router();
 
-
 cursosRouter.post("/cursos", async (req, res) => {
     const { nome, turno, dataInicio } = req.body
 
@@ -14,7 +13,6 @@ cursosRouter.post("/cursos", async (req, res) => {
         res.status(500).json({ message: "Ocorreu um erro ao adicionar curso." });
     }
 });
-
 
 cursosRouter.put("/cursos/:id", async (req, res) => {
     const { nome, turno, dataInicio } = req.body;
@@ -31,7 +29,6 @@ cursosRouter.put("/cursos/:id", async (req, res) => {
         
     }
 });
-
 
 cursosRouter.get("/cursos", async (req, res) => {
     const listacursos = await Curso.findAll();
@@ -62,10 +59,3 @@ cursosRouter.delete("/cursos/:id", async (req, res) => {
       res.status(500).json({ message: "Ocorreu um erro ao excluir curso" });
     }
   });
-
-
-//   CURSO PRINCIPAL
-// delete curso deleta aluno e professor
-// quando listar curso include professor
-// adicionar e editar curso tem que adicionar professor
-// listar aluno vai listar curso

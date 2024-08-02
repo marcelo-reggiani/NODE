@@ -3,7 +3,6 @@ import { Router } from "express";
 
 export const  alunosRouter = Router();
 
-
 alunosRouter.post("/alunos", async (req, res) => {
     const { nome, email, telefone, responsavel } = req.body
 
@@ -14,7 +13,6 @@ alunosRouter.post("/alunos", async (req, res) => {
         res.status(500).json({ message: "Ocorreu um erro ao adicionar aluno." });
     }
 });
-
 
 alunosRouter.put("/alunos/:id", async (req, res) => {
     const { nome, email, telefone, responsavel } = req.body;
@@ -31,7 +29,6 @@ alunosRouter.put("/alunos/:id", async (req, res) => {
         
     }
 });
-
 
 alunosRouter.get("/alunos", async (req, res) => {
     const listaAlunos = await Aluno.findAll();

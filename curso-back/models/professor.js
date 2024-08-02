@@ -1,7 +1,6 @@
 import {connection} from "../config/database.js";
 import { DataTypes } from "sequelize";
 
-
 export const Professor = connection.define("professor", {
 
     nome: { 
