@@ -4,7 +4,7 @@ import { usuarioValidation } from "../utils/validations.js";
 
 export const usuariosRouter = Router();
 
-// INSERÇÃO DO CONTATO POST
+// INSERÇÃO DO USUARIO POST
 usuariosRouter.post("/usuarios", async (req, res) => {
     // error -> Objeto com detalhes dos erros de validação
     // value -> São os dados do req.body

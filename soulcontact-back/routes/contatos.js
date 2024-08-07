@@ -15,7 +15,8 @@ contatosRouter.post("/contatos", async (req, res) => {
         res.status(400).json({ message: "Dados Invalidos", error: error.details});
         return;
     }
-
+    console.log(value);
+    console.log(req.body);
     // Extrair as informações dos contatos que foram validados anteriormente
     const { nome, sobrenome, email, telefone, observacoes, favorito } = value;
 

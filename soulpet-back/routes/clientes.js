@@ -38,7 +38,7 @@ clientesRouter.post("/clientes", async (req, res) => {
     } catch(err) {
         // Tratamento caso ocorra algum erro
         // (500) - Internal Error
-        res.status(500).json({messsage: "Um erro ocorreu ao inserir o cliente."});
+        res.status(500).json({message: "Um erro ocorreu ao inserir o cliente."});
     }
 });
 

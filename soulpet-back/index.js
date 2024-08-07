@@ -2,6 +2,7 @@ import {connection, authenticate} from "./config/database.js";
 import express from "express";
 import { clientesRouter } from "./routes/clientes.js";
 import { petsRouter } from "./routes/pets.js";
+import cors from "cors";
 
 authenticate(connection).then(() => {
     // Após conectar no banco de dados ele irá sincronizar os models no banco. OU seja. Irá gerar as tabelas caso necessário
@@ -17,6 +18,10 @@ const app = express();
 
 // Garante que todas as requisições que tem body, seja lidas como JSON
 app.use(express.json()); 
+
+// LINHA RESPONSAVEL PELA CONFIGURAÇÃO DO CORS. (INTEGRAÇÃO FRONT E BACK)
+// Em origin colocar a URL do FRONT-END
+app.use(cors({ origin: "http://localhost:5173" })); 
 
 // Definir os endpoins do backend (rotas) MODULOS DE ROTAS
 app.use(clientesRouter);

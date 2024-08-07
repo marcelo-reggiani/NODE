@@ -11,11 +11,14 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log(err);
 });
 
+
 const app = express();
+app.use(express.json());
+
 app.use(contatosRouter);
 app.use(usuariosRouter)
 
-app.use(express.json());
+
 
 
 app.listen(3000 , () => {
