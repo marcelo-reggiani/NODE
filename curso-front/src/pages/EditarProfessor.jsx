@@ -1,16 +1,19 @@
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { addProfessor } from "../api/professors";
-import toast from "react-hot-toast"
+import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { getProfessor, updateProfessor } from "../api/professors";
 
-function NovoProfessor() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+function EditarProfessor() {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const navigate = useNavigate();
 
-  function salvarProfessor(data) {
-    addProfessor(data).then((resposta) => {
+  const { id } = useParams();
+
+  function atualizarProfessor(data) {
+    updateProfessor(id, data).then((resposta) => {
       toast.success(resposta.message);
       navigate("/professors");
     }).catch((err) => {
@@ -18,11 +21,23 @@ function NovoProfessor() {
     });
   }
 
+  function carregarProfessor() {
+    getProfessor(id).then((dados) => {
+      reset(dados);
+    }).catch((err) => {
+      navigate("/professors");
+    });
+  }
+
+  useEffect(() => {
+    carregarProfessor();
+  }, []);
+
   return (
     <main className="mt-4 container">
-      <h1>Novo Professor</h1>
+      <h1>Editar Professors</h1>
       <hr />
-      <form onSubmit={handleSubmit(salvarProfessor)}>
+      <form onSubmit={handleSubmit(atualizarProfessor)}>
         <div>
           <label htmlFor="nome">Nome</label>
           <input
@@ -59,13 +74,12 @@ function NovoProfessor() {
             <small className="text-danger">O telefone é inválido!</small>
           )}
         </div>
-
         <Button className="mt-3" type="submit">
-          Cadastrar
+          Atualizar
         </Button>
       </form>
     </main>
   );
 }
 
-export default NovoProfessor;
+export default EditarProfessor;

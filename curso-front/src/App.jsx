@@ -8,6 +8,9 @@ import EditarCurso from "./pages/EditarCurso";
 import Alunos from "./pages/Alunos";
 import NovoAluno from "./pages/NovoAluno";
 import EditarAluno from "./pages/EditarAluno";
+import Professors from "./pages/Professors";
+import NovoProfessor from "./pages/NovoProfessor";
+import EditarProfessor from "./pages/EditarProfessor";
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/alunos" element={<Alunos />} />
           <Route path="/alunos/novo" element={<NovoAluno />} />
           <Route path="/alunos/editar/:id" element={<EditarAluno />} />
+          <Route path="/professors" element={<Professors />} />
+          <Route path="/professors/novo" element={<NovoProfessor />} />
+          <Route path="/professors/editar/:id" element={<EditarProfessor />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="bottom-right" />

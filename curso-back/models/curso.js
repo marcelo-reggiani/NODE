@@ -18,11 +18,20 @@ export const Curso = connection.define("curso", {
         type: DataTypes.DATEONLY,
         allowNull: false,
     },
+    professorId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'professors', 
+          key: 'id',
+        },
+      },
 
 });
 
-Curso.hasOne(Professor);
+
+Curso.hasOne(Professor, { onDelete: "CASCADE"});
 Professor.belongsTo(Curso);
 
-Curso.hasMany(Aluno);
+Curso.hasMany(Aluno, { onDelete: "CASCADE" });
 Aluno.belongsTo(Curso);
+

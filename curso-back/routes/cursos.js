@@ -5,35 +5,36 @@ import { Router } from "express";
 export const  cursosRouter = Router();
 
 cursosRouter.post("/cursos", async (req, res) => {
-    const { nome, turno, dataInicio, professor } = req.body
+    const { nome, turno, dataInicio, professorId } = req.body;
 
     try {
-        await Curso.create({ nome, turno, dataInicio, professor }, { include: [ Professor ] });
-        res.json({message: "curso Criado com Sucesso"});
+        await Curso.create({ nome, turno, dataInicio, professorId });
+        res.json({ message: "Curso criado com sucesso" });
     } catch (err) {
-        res.status(500).json({ message: "Ocorreu um erro ao adicionar curso." });
+        console.error(err);
+        res.status(500).json({ message: "Ocorreu um erro ao adicionar o curso." });
     }
 });
 
 cursosRouter.put("/cursos/:id", async (req, res) => {
-    const { nome, turno, dataInicio, professor } = req.body;
+    const { nome, turno, dataInicio, professorId } = req.body;
 
     try {
         const curso = await Curso.findByPk(req.params.id);
+
         if(curso) {
-            await curso.update({ nome, turno, dataInicio });
-            await Professor.update(professor, {where: { cursoId: idCursos } });
-            res.json({ message: "curso atualizado com SUCESSO"})
+            await curso.update({ nome, turno, dataInicio, professorId });
+            res.json({ message: "Curso atualizado com sucesso" });
         } else {
-            res.status(404).json({ message: "curso não encontrado" });
+            res.status(404).json({ message: "Curso não encontrado" });
         }
     } catch (error) {
-        
+        res.status(500).json({ message: "Erro ao atualizar curso" });
     }
 });
 
 cursosRouter.get("/cursos", async (req, res) => {
-    const listacursos = await Curso.findAll();
+    const listacursos = await Curso.findAll({ include: [Professor] });
     res.json(listacursos);
 });
 
